@@ -14,18 +14,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const mongoose_1 = __importDefault(require("mongoose"));
-const users_1 = __importDefault(require("./models/users"));
+const mongoose_1 = require("mongoose");
+const user_1 = __importDefault(require("./models/user"));
 const definitions_1 = require("./definitions");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
+const run = () => __awaiter(void 0, void 0, void 0, function* () {
+    const myUser = new user_1.default({
+        name: 'Yoav',
+        age: 20,
+    });
+    yield myUser.save();
+    console.log({ myUser });
+});
 app.get(`/`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const array = JSON.stringify(users_1.default);
-    console.log({ array });
+    const array = yield user_1.default.find({ age: 19 });
+    console.log('user', user_1.default);
+    console.log('ARRAY', array);
     res.send(array);
 }));
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}…`);
-    mongoose_1.default.connect(definitions_1.mongoURI).catch((err) => console.log(err));
+    (0, mongoose_1.connect)(definitions_1.mongoURI).catch((err) => console.log(err));
+    run().catch((err) => console.log(err));
 });
