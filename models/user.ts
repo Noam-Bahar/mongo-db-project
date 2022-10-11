@@ -1,8 +1,8 @@
-import { Schema, model } from 'mongoose';
+import { Schema, SchemaTypes, model } from 'mongoose';
 
 interface IUser {
   name: string;
-  age: number;
+  groups: [Schema.Types.ObjectId];
 }
 
 const userSchema = new Schema<IUser>({
@@ -10,9 +10,8 @@ const userSchema = new Schema<IUser>({
     type: String,
     required: true,
   },
-
-  age: {
-    type: Number,
+  groups: {
+    type: [SchemaTypes.ObjectId],
     required: true,
   },
 });
