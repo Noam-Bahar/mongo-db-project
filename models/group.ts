@@ -4,7 +4,7 @@ interface IGroup {
   name: string;
   parentGroups: [Schema.Types.ObjectId];
   childGroups: [Schema.Types.ObjectId];
-  members: [string];
+  members: [Schema.Types.ObjectId];
 }
 
 const groupSchema = new Schema<IGroup>({
@@ -21,7 +21,7 @@ const groupSchema = new Schema<IGroup>({
     required: true,
   },
   members: {
-    type: [String],
+    type: [SchemaTypes.ObjectId],
     required: true,
   },
 });
