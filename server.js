@@ -16,15 +16,16 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const users_1 = __importDefault(require("./models/users"));
+const definitions_1 = require("./definitions");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
-const mongoURI = `mongodb://localhost:27023/MyDatabase`;
 app.get(`/`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const array = JSON.stringify(users_1.default);
+    console.log({ array });
     res.send(array);
 }));
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}…`);
-    mongoose_1.default.connect(mongoURI).catch((err) => console.log(err));
+    mongoose_1.default.connect(definitions_1.mongoURI).catch((err) => console.log(err));
 });

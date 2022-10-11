@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-(0, mongoose_1.connect)(`mongodb://localhost:27023/MyDatabase`);
+const definitions_1 = require("../definitions");
 const userSchema = new mongoose_1.Schema({
     name: {
         type: String,
@@ -23,12 +23,13 @@ const userSchema = new mongoose_1.Schema({
 });
 const list = (0, mongoose_1.model)('users', userSchema);
 const run = () => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, mongoose_1.connect)(definitions_1.mongoURI);
     const user = new list({
         name: 'Yoav',
         age: 20,
     });
     yield user.save();
-    console.log(user.age);
+    console.log('Users.ts', { user });
 });
 run().catch((err) => console.log(err));
 exports.default = list;

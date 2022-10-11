@@ -1,4 +1,5 @@
 import { Schema, model, connect } from 'mongoose';
+import { mongoURI } from '../definitions';
 
 interface User {
   name: string;
@@ -20,7 +21,7 @@ const userSchema = new Schema<User>({
 const list = model<User>('users', userSchema);
 
 const run = async () => {
-  await connect(`mongodb://localhost:27023/MyDatabase`);
+  await connect(mongoURI);
 
   const user = new list({
     name: 'Yoav',
@@ -29,7 +30,7 @@ const run = async () => {
 
   await user.save();
 
-  console.log(user.age);
+  console.log('Users.ts', { user });
 };
 
 run().catch((err) => console.log(err));
