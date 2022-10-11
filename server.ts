@@ -1,36 +1,42 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { connect } from 'mongoose';
-import user from './models/user';
 import { mongoURI } from './definitions';
+import user from './models/user';
+import group from './models/group';
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const run = async () => {
-  const myUser = new user({
+app.get(`/`, async (req, res) => {
+  const userArr = await user.find({ age: 20 });
+  console.log({ userArr });
+
+  const groupArr = await group.find({ age: 20 });
+  console.log({ groupArr });
+
+  res.send([...userArr, ...groupArr]);
+});
+
+app.get(`/adduser`, async (req, res) => {
+  const myUser = await user.create({
     name: 'Yoav',
     age: 20,
   });
+  res.send('user saved');
+});
 
-  await myUser.save();
+app.get(`/addgroup`, async (req, res) => {
+  const myGroup = await group.create({
+    name: 'swimming',
+  });
 
-  console.log({ myUser });
-};
-
-app.get(`/`, async (req, res) => {
-  const array = await user.find({ age: 19 });
-  console.log('user', user);
-  console.log('ARRAY', array);
-
-  res.send(array);
+  res.send('group saved');
 });
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}…`);
 
   connect(mongoURI).catch((err) => console.log(err));
-
-  run().catch((err) => console.log(err));
 });

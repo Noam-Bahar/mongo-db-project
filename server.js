@@ -15,27 +15,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = require("mongoose");
-const user_1 = __importDefault(require("./models/user"));
 const definitions_1 = require("./definitions");
+const user_1 = __importDefault(require("./models/user"));
+const group_1 = __importDefault(require("./models/group"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
-const run = () => __awaiter(void 0, void 0, void 0, function* () {
-    const myUser = new user_1.default({
+app.get(`/`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userArr = yield user_1.default.find({ age: 20 });
+    console.log({ userArr });
+    const groupArr = yield group_1.default.find({ age: 20 });
+    console.log({ groupArr });
+    res.send([...userArr, ...groupArr]);
+}));
+app.get(`/adduser`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const myUser = yield user_1.default.create({
         name: 'Yoav',
         age: 20,
     });
-    yield myUser.save();
-    console.log({ myUser });
-});
-app.get(`/`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const array = yield user_1.default.find({ age: 19 });
-    console.log('user', user_1.default);
-    console.log('ARRAY', array);
-    res.send(array);
+    res.send('user saved');
+}));
+app.get(`/addgroup`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const myGroup = yield group_1.default.create({
+        name: 'swimming',
+    });
+    res.send('group saved');
 }));
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}…`);
     (0, mongoose_1.connect)(definitions_1.mongoURI).catch((err) => console.log(err));
-    run().catch((err) => console.log(err));
 });
