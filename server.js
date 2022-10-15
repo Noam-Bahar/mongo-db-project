@@ -42,6 +42,6 @@ app.get(`/addgroup`, (req, res) => __awaiter(void 0, void 0, void 0, function* (
     res.send('group saved');
 }));
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}…`);
     (0, mongoose_1.connect)(definitions_1.mongoURI).catch((err) => console.log(err));
+    console.log(`Listening on port ${PORT}…`);
 });
