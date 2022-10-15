@@ -2,7 +2,6 @@ import { Schema, SchemaTypes, model } from 'mongoose';
 
 interface IGroup {
   name: string;
-  parentGroups: [Schema.Types.ObjectId];
   childGroups: [Schema.Types.ObjectId];
   members: [Schema.Types.ObjectId];
 }
@@ -10,10 +9,6 @@ interface IGroup {
 const groupSchema = new Schema<IGroup>({
   name: {
     type: String,
-    required: true,
-  },
-  parentGroups: {
-    type: [SchemaTypes.ObjectId],
     required: true,
   },
   childGroups: {
