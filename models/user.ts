@@ -1,10 +1,5 @@
 import { Schema, SchemaTypes, model } from 'mongoose';
-
-interface IUser {
-  name: string;
-  age: number;
-  groups: [Schema.Types.ObjectId];
-}
+import { IUser } from '../definitions';
 
 const userSchema = new Schema<IUser>({
   name: {

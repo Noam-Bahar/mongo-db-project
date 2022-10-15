@@ -1,10 +1,5 @@
 import { Schema, SchemaTypes, model } from 'mongoose';
-
-interface IGroup {
-  name: string;
-  childGroups: [Schema.Types.ObjectId];
-  members: [Schema.Types.ObjectId];
-}
+import { IGroup } from '../definitions';
 
 const groupSchema = new Schema<IGroup>({
   name: {
