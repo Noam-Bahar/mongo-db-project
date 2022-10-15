@@ -12,6 +12,11 @@ const addUser = async (user: IUser) => {
     console.log(e);
   }
 };
-const updateUser = () => {};
+const updateUser = (id: Schema.Types.ObjectId, userInfo: IUser) => {
+  console.log('updateUser method activated', id);
+};
+const deleteUser = (id: Schema.Types.ObjectId) => {
+  console.log('deleteUser method activated', id);
+};
 
-export {};
+export { addUser, updateUser, deleteUser };
