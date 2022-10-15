@@ -12,14 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_1 = __importDefault(require("./models/user"));
-const addUser = (name, age, groups) => __awaiter(void 0, void 0, void 0, function* () {
+exports.deleteUser = exports.updateUser = exports.addUser = void 0;
+const User_1 = __importDefault(require("./models/User"));
+const addUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield user_1.default.create({ name, age, groups });
+        const { name } = user;
+        yield User_1.default.create(user);
         console.log(`User ${name} saved`);
     }
     catch (e) {
         console.log(e);
     }
 });
-const updateUser = () => { };
+exports.addUser = addUser;
+const updateUser = (id, userInfo) => {
+    console.log('updateUser method activated', id);
+};
+exports.updateUser = updateUser;
+const deleteUser = (id) => {
+    console.log('deleteUser method activated', id);
+};
+exports.deleteUser = deleteUser;

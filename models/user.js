@@ -11,7 +11,7 @@ const userSchema = new mongoose_1.Schema({
         required: true,
     },
     groups: {
-        type: [mongoose_1.SchemaTypes.ObjectId],
+        type: [],
         required: true,
     },
 });

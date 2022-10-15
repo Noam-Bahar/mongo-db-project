@@ -16,27 +16,30 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = require("mongoose");
 const definitions_1 = require("./definitions");
-const user_1 = __importDefault(require("./models/user"));
-const group_1 = __importDefault(require("./models/group"));
+const User_1 = __importDefault(require("./models/User"));
+const Group_1 = __importDefault(require("./models/Group"));
+const dbQueries_1 = require("./dbQueries");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
 app.get(`/`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userArr = yield user_1.default.find({ age: 20 });
+    const userArr = yield User_1.default.find({ age: 20 });
     console.log({ userArr });
-    const groupArr = yield group_1.default.find({ age: 20 });
+    const groupArr = yield Group_1.default.find({ age: 20 });
     console.log({ groupArr });
     res.send([...userArr, ...groupArr]);
 }));
 app.get(`/adduser`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const myUser = yield user_1.default.create({
+    const myUser = {
         name: 'Yoav',
         age: 20,
-    });
-    res.send('user saved');
+        groups: [],
+    };
+    yield (0, dbQueries_1.addUser)(myUser);
+    res.send('User saved');
 }));
 app.get(`/addgroup`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const myGroup = yield group_1.default.create({
+    const myGroup = yield Group_1.default.create({
         name: 'swimming',
     });
     res.send('group saved');

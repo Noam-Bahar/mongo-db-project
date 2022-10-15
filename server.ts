@@ -1,9 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { connect } from 'mongoose';
-import { mongoURI } from './definitions';
-import User from './models/user';
-import Group from './models/group';
+
+import { connect, Schema } from 'mongoose';
+import { IUser, mongoURI } from './definitions';
+import User from './models/User';
+import Group from './models/Group';
+import { addUser } from './dbQueries';
 
 dotenv.config();
 const app = express();
@@ -20,11 +22,13 @@ app.get(`/`, async (req, res) => {
 });
 
 app.get(`/adduser`, async (req, res) => {
-  const myUser = await User.create({
+  const myUser = {
     name: 'Yoav',
     age: 20,
-  });
-  res.send('user saved');
+    groups: [] as Schema.Types.ObjectId[],
+  };
+  await addUser(myUser);
+  res.send('User saved');
 });
 
 app.get(`/addgroup`, async (req, res) => {

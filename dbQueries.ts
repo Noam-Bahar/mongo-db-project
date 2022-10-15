@@ -1,12 +1,12 @@
-import User from './models/user';
-import Group from './models/group';
+import User from './models/User';
+import Group from './models/Group';
 import { Schema } from 'mongoose';
 import { IUser, IGroup } from './definitions';
 
-const addUser = async (user: IUser) => {
-  const { name, age, groups }: IUser = user;
+const addUser = async (user: any) => {
   try {
-    await User.create({ name, age, groups });
+    const { name } = user;
+    await User.create(user);
     console.log(`User ${name} saved`);
   } catch (e) {
     console.log(e);

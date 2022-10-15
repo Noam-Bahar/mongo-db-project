@@ -6,7 +6,7 @@ const mongoURI: string = `mongodb://localhost:${mongoPort}/MyDatabase`;
 interface IUser {
   name: string;
   age: number;
-  groups: [Schema.Types.ObjectId];
+  groups: Schema.Types.ObjectId[];
 }
 
 interface IGroup {
