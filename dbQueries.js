@@ -12,8 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.updateUser = exports.addUser = void 0;
+exports.getGroup = exports.deleteGroup = exports.updateGroup = exports.addGroup = exports.getUser = exports.deleteUser = exports.updateUser = exports.addUser = void 0;
 const User_1 = __importDefault(require("./models/User"));
+const Group_1 = __importDefault(require("./models/Group"));
 const addUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name } = user;
@@ -41,11 +42,27 @@ const updateUser = (id, userInfo) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.updateUser = updateUser;
 const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    // TODO
     console.log('deleteUser method activated', id);
 });
 exports.deleteUser = deleteUser;
-const getUser = (id) => __awaiter(void 0, void 0, void 0, function* () { });
-const addGroup = (group) => __awaiter(void 0, void 0, void 0, function* () { });
+const getUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    // TODO: User.find(id)
+});
+exports.getUser = getUser;
+const addGroup = (group) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield Group_1.default.create(group);
+        console.log(`New group ${group.name} created`);
+    }
+    catch (e) {
+        console.log(e);
+    }
+});
+exports.addGroup = addGroup;
 const updateGroup = (id, groupInfo) => __awaiter(void 0, void 0, void 0, function* () { });
+exports.updateGroup = updateGroup;
 const deleteGroup = (id) => __awaiter(void 0, void 0, void 0, function* () { });
+exports.deleteGroup = deleteGroup;
 const getGroup = (id) => __awaiter(void 0, void 0, void 0, function* () { });
+exports.getGroup = getGroup;

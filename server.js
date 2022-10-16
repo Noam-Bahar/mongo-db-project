@@ -39,19 +39,22 @@ app.get(`/adduser`, (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.send('User saved');
 }));
 app.get(`/updateuser`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const myId = '634be4c36943b5e80d24f853';
+    const myId = '634be4e0d5d5ef08e49a0756';
     const myUserInfo = {
-        name: 'Noam',
-        age: 19,
+        name: 'Bob',
+        age: 21,
         groups: [],
     };
     yield (0, dbQueries_1.updateUser)(myId, myUserInfo);
     res.send('User updated');
 }));
 app.get(`/addgroup`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const myGroup = yield Group_1.default.create({
+    const myGroup = {
         name: 'swimming',
-    });
+        childGroups: [],
+        members: [],
+    };
+    yield (0, dbQueries_1.addGroup)(myGroup);
     res.send('group saved');
 }));
 app.listen(PORT, () => {

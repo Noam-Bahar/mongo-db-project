@@ -5,7 +5,16 @@ import { connect, Schema } from 'mongoose';
 import { IUser, IGroup, mongoURI } from './definitions';
 import User from './models/User';
 import Group from './models/Group';
-import { addUser, updateUser } from './dbQueries';
+import {
+  addUser,
+  updateUser,
+  deleteUser,
+  getUser,
+  addGroup,
+  updateGroup,
+  deleteGroup,
+  getGroup,
+} from './dbQueries';
 
 dotenv.config();
 const app = express();
@@ -47,12 +56,12 @@ app.get(`/updateuser`, async (req, res) => {
 
 app.get(`/addgroup`, async (req, res) => {
   const myGroup: IGroup = {
-    name: 'swimming',
+    name: 'basketball',
     childGroups: [],
     members: [],
   };
 
-  await Group.create();
+  await addGroup(myGroup);
 
   res.send('group saved');
 });

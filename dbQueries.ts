@@ -30,12 +30,22 @@ const updateUser = async (id: Schema.Types.ObjectId, userInfo: IUser) => {
 };
 
 const deleteUser = async (id: Schema.Types.ObjectId) => {
+  // TODO
   console.log('deleteUser method activated', id);
 };
 
-const getUser = async (id: Schema.Types.ObjectId) => {};
+const getUser = async (id: Schema.Types.ObjectId) => {
+  // TODO: User.find(id)
+};
 
-const addGroup = async (group: IGroup) => {};
+const addGroup = async (group: IGroup) => {
+  try {
+    await Group.create(group);
+    console.log(`New group ${group.name} created`);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 const updateGroup = async (id: Schema.Types.ObjectId, groupInfo: IGroup) => {};
 
@@ -43,4 +53,13 @@ const deleteGroup = async (id: Schema.Types.ObjectId) => {};
 
 const getGroup = async (id: Schema.Types.ObjectId) => {};
 
-export { addUser, updateUser, deleteUser };
+export {
+  addUser,
+  updateUser,
+  deleteUser,
+  getUser,
+  addGroup,
+  updateGroup,
+  deleteGroup,
+  getGroup,
+};
