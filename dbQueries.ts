@@ -31,6 +31,8 @@ const updateUser = async (id: Schema.Types.ObjectId, userInfo: IUser) => {
 
 const deleteUser = async (id: Schema.Types.ObjectId) => {
   // TODO
+  await User.deleteOne({ _id: id });
+
   console.log('deleteUser method activated', id);
 };
 

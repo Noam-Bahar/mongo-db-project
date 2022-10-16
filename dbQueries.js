@@ -43,6 +43,7 @@ const updateUser = (id, userInfo) => __awaiter(void 0, void 0, void 0, function*
 exports.updateUser = updateUser;
 const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
     // TODO
+    yield User_1.default.deleteOne({ _id: id });
     console.log('deleteUser method activated', id);
 });
 exports.deleteUser = deleteUser;

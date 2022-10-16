@@ -39,9 +39,9 @@ app.get(`/adduser`, (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.send('User saved');
 }));
 app.get(`/updateuser`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const myId = '634be4e0d5d5ef08e49a0756';
+    const myId = '634bffae2461f0fa42fedb90';
     const myUserInfo = {
-        name: 'Bob',
+        name: 'I SHALL BE DELETED',
         age: 21,
         groups: [],
     };
@@ -50,12 +50,17 @@ app.get(`/updateuser`, (req, res) => __awaiter(void 0, void 0, void 0, function*
 }));
 app.get(`/addgroup`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const myGroup = {
-        name: 'swimming',
+        name: 'basketball',
         childGroups: [],
         members: [],
     };
     yield (0, dbQueries_1.addGroup)(myGroup);
     res.send('group saved');
+}));
+app.get(`/deleteuser`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const myId = `634bffae2461f0fa42fedb90`;
+    yield (0, dbQueries_1.deleteUser)(myId);
+    res.send('delete successful');
 }));
 app.listen(PORT, () => {
     (0, mongoose_1.connect)(definitions_1.mongoURI).catch((err) => console.log(err));
