@@ -73,6 +73,15 @@ app.get(`/deleteuser`, async (req, res) => {
   res.send('delete successful');
 });
 
+// How to get ID
+app.get(`/example`, async (req, res) => {
+  const myId: any = '634be4e0d5d5ef08e49a0756';
+  const user: any = await getUser(myId);
+  console.log(user._id);
+
+  res.send(user._id);
+});
+
 app.listen(PORT, () => {
   connect(mongoURI).catch((err) => console.log(err));
 
