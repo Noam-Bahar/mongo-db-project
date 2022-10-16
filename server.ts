@@ -22,7 +22,7 @@ app.get(`/`, async (req, res) => {
 });
 
 app.get(`/adduser`, async (req, res) => {
-  const myUser = {
+  const myUser: IUser = {
     name: 'Yoav',
     age: 20,
     groups: [] as Schema.Types.ObjectId[],

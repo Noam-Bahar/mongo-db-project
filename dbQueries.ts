@@ -3,7 +3,7 @@ import Group from './models/Group';
 import { Schema } from 'mongoose';
 import { IUser, IGroup } from './definitions';
 
-const addUser = async (user: any) => {
+const addUser = async (user: IUser) => {
   try {
     const { name } = user;
     await User.create(user);
@@ -12,11 +12,23 @@ const addUser = async (user: any) => {
     console.log(e);
   }
 };
-const updateUser = (id: Schema.Types.ObjectId, userInfo: IUser) => {
+
+const updateUser = async (id: Schema.Types.ObjectId, userInfo: IUser) => {
   console.log('updateUser method activated', id);
 };
-const deleteUser = (id: Schema.Types.ObjectId) => {
+
+const deleteUser = async (id: Schema.Types.ObjectId) => {
   console.log('deleteUser method activated', id);
 };
+
+const getUser = async (id: Schema.Types.ObjectId) => {};
+
+const addGroup = async (group: IGroup) => {};
+
+const updateGroup = async (id: Schema.Types.ObjectId, groupInfo: IGroup) => {};
+
+const deleteGroup = async (id: Schema.Types.ObjectId) => {};
+
+const getGroup = async (id: Schema.Types.ObjectId) => {};
 
 export { addUser, updateUser, deleteUser };
