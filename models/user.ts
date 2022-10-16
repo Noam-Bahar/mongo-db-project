@@ -11,7 +11,7 @@ const userSchema = new Schema<IUser>({
     required: true,
   },
   groups: {
-    type: [],
+    type: [SchemaTypes.ObjectId],
     required: true,
   },
 });

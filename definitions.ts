@@ -11,8 +11,8 @@ interface IUser {
 
 interface IGroup {
   name: string;
-  childGroups: [Schema.Types.ObjectId];
-  members: [Schema.Types.ObjectId];
+  childGroups: Schema.Types.ObjectId[];
+  members: Schema.Types.ObjectId[];
 }
 
 export { IUser, IGroup, mongoURI };

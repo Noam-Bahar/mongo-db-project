@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 import { connect, Schema } from 'mongoose';
-import { IUser, mongoURI } from './definitions';
+import { IUser, IGroup, mongoURI } from './definitions';
 import User from './models/User';
 import Group from './models/Group';
 import { addUser, updateUser } from './dbQueries';
@@ -46,9 +46,13 @@ app.get(`/updateuser`, async (req, res) => {
 });
 
 app.get(`/addgroup`, async (req, res) => {
-  const myGroup = await Group.create({
+  const myGroup: IGroup = {
     name: 'swimming',
-  });
+    childGroups: [],
+    members: [],
+  };
+
+  await Group.create();
 
   res.send('group saved');
 });
