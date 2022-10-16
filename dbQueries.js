@@ -53,7 +53,7 @@ const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
 exports.deleteUser = deleteUser;
 const getUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user = yield User_1.default.find(id);
+        const user = yield User_1.default.findById(id);
         return user;
     }
     catch (e) {

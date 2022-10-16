@@ -16,18 +16,18 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = require("mongoose");
 const definitions_1 = require("./definitions");
-const User_1 = __importDefault(require("./models/User"));
 const Group_1 = __importDefault(require("./models/Group"));
 const dbQueries_1 = require("./dbQueries");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
 app.get(`/`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userArr = yield User_1.default.find({ age: 20 });
+    const myId = '634be4e0d5d5ef08e49a0756';
+    const userArr = yield (0, dbQueries_1.getUser)(myId);
     console.log({ userArr });
     const groupArr = yield Group_1.default.find({ age: 20 });
     console.log({ groupArr });
-    res.send([...userArr, ...groupArr]);
+    res.send([userArr, ...groupArr]);
 }));
 app.get(`/adduser`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const myUser = {

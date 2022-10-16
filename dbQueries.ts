@@ -40,7 +40,7 @@ const deleteUser = async (id: Schema.Types.ObjectId) => {
 
 const getUser = async (id: Schema.Types.ObjectId) => {
   try {
-    const user = await User.find(id);
+    const user = await User.findById(id);
     return user;
   } catch (e) {
     console.log('User not found');

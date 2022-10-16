@@ -21,13 +21,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get(`/`, async (req, res) => {
-  const userArr = await User.find({ age: 20 });
+  const myId: any = '634be4e0d5d5ef08e49a0756';
+  const userArr = await getUser(myId);
   console.log({ userArr });
 
   const groupArr = await Group.find({ age: 20 });
   console.log({ groupArr });
 
-  res.send([...userArr, ...groupArr]);
+  res.send([userArr, ...groupArr]);
 });
 
 app.get(`/adduser`, async (req, res) => {
