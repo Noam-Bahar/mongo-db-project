@@ -25,11 +25,27 @@ const addUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.addUser = addUser;
-const updateUser = (id, userInfo) => {
-    console.log('updateUser method activated', id);
-};
+const updateUser = (id, userInfo) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield User_1.default.findById(id);
+    if (user) {
+        const { name, age, groups } = userInfo;
+        user.name = name || user.name;
+        user.age = age || user.age;
+        user.groups = groups || user.groups;
+        yield user.save();
+        console.log(`User ${user.name} saved`);
+    }
+    else {
+        console.log('User not found');
+    }
+});
 exports.updateUser = updateUser;
-const deleteUser = (id) => {
+const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
     console.log('deleteUser method activated', id);
-};
+});
 exports.deleteUser = deleteUser;
+const getUser = (id) => __awaiter(void 0, void 0, void 0, function* () { });
+const addGroup = (group) => __awaiter(void 0, void 0, void 0, function* () { });
+const updateGroup = (id, groupInfo) => __awaiter(void 0, void 0, void 0, function* () { });
+const deleteGroup = (id) => __awaiter(void 0, void 0, void 0, function* () { });
+const getGroup = (id) => __awaiter(void 0, void 0, void 0, function* () { });

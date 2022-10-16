@@ -5,7 +5,7 @@ import { connect, Schema } from 'mongoose';
 import { IUser, mongoURI } from './definitions';
 import User from './models/User';
 import Group from './models/Group';
-import { addUser } from './dbQueries';
+import { addUser, updateUser } from './dbQueries';
 
 dotenv.config();
 const app = express();
@@ -30,7 +30,19 @@ app.get(`/adduser`, async (req, res) => {
   await addUser(myUser);
   res.send('User saved');
 });
-app.get(`/addgroup`, async (req, res) => {});
+
+app.get(`/updateuser`, async (req, res) => {
+  const myId: any = '634be4e0d5d5ef08e49a0756';
+
+  const myUserInfo: IUser = {
+    name: 'Amit',
+    age: 17,
+    groups: [],
+  };
+
+  await updateUser(myId, myUserInfo);
+  res.send('User updated');
+});
 
 app.get(`/addgroup`, async (req, res) => {
   const myGroup = await Group.create({
