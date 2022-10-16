@@ -25,8 +25,9 @@ app.get(`/adduser`, async (req, res) => {
   const myUser: IUser = {
     name: 'Yoav',
     age: 20,
-    groups: [] as Schema.Types.ObjectId[],
+    groups: [],
   };
+
   await addUser(myUser);
   res.send('User saved');
 });
@@ -35,8 +36,8 @@ app.get(`/updateuser`, async (req, res) => {
   const myId: any = '634be4e0d5d5ef08e49a0756';
 
   const myUserInfo: IUser = {
-    name: 'Amit',
-    age: 17,
+    name: 'Bob',
+    age: 21,
     groups: [],
   };
 
