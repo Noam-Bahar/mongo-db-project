@@ -39,10 +39,10 @@ app.get(`/adduser`, (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.send('User saved');
 }));
 app.get(`/updateuser`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const myId = '634bffad2461f0fa42fedb8c';
+    const myId = '634bffaa2461f0fa42fedb88';
     const myUserInfo = {
         name: 'I SHALL BE DELETED',
-        age: 21,
+        age: 999,
         groups: [],
     };
     yield (0, dbQueries_1.updateUser)(myId, myUserInfo);
@@ -58,7 +58,7 @@ app.get(`/addgroup`, (req, res) => __awaiter(void 0, void 0, void 0, function* (
     res.send('group saved');
 }));
 app.get(`/deleteuser`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const myId = `634bffad2461f0fa42fedb8c`;
+    const myId = `634bffaa2461f0fa42fedb88`;
     yield (0, dbQueries_1.deleteUser)(myId);
     res.send('delete successful');
 }));

@@ -31,7 +31,7 @@ const updateUser = async (id: Schema.Types.ObjectId, userInfo: IUser) => {
 
 const deleteUser = async (id: Schema.Types.ObjectId) => {
   try {
-    await User.deleteOne({ _id: id });
+    await User.findByIdAndDelete(id);
     console.log('User has been deleted');
   } catch (e) {
     console.log('User not found');

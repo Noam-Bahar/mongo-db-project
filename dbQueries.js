@@ -43,7 +43,7 @@ const updateUser = (id, userInfo) => __awaiter(void 0, void 0, void 0, function*
 exports.updateUser = updateUser;
 const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield User_1.default.deleteOne({ _id: id });
+        yield User_1.default.findByIdAndDelete(id);
         console.log('User has been deleted');
     }
     catch (e) {

@@ -43,11 +43,11 @@ app.get(`/adduser`, async (req, res) => {
 });
 
 app.get(`/updateuser`, async (req, res) => {
-  const myId: any = '634bffad2461f0fa42fedb8c';
+  const myId: any = '634bffaa2461f0fa42fedb88';
 
   const myUserInfo: IUser = {
     name: 'I SHALL BE DELETED',
-    age: 21,
+    age: 999,
     groups: [],
   };
 
@@ -68,7 +68,7 @@ app.get(`/addgroup`, async (req, res) => {
 });
 
 app.get(`/deleteuser`, async (req, res) => {
-  const myId: any = `634bffad2461f0fa42fedb8c`;
+  const myId: any = `634bffaa2461f0fa42fedb88`;
   await deleteUser(myId);
   res.send('delete successful');
 });
