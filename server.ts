@@ -30,6 +30,7 @@ app.get(`/adduser`, async (req, res) => {
   await addUser(myUser);
   res.send('User saved');
 });
+app.get(`/addgroup`, async (req, res) => {});
 
 app.get(`/addgroup`, async (req, res) => {
   const myGroup = await Group.create({

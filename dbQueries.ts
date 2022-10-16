@@ -14,7 +14,19 @@ const addUser = async (user: IUser) => {
 };
 
 const updateUser = async (id: Schema.Types.ObjectId, userInfo: IUser) => {
-  console.log('updateUser method activated', id);
+  const user = await User.findById(id);
+  if (user) {
+    const { name, age, groups } = userInfo;
+
+    user.name = name || user.name;
+    user.age = age || user.age;
+    user.groups = groups || user.groups;
+
+    await user.save();
+    console.log(`User ${user.name} saved`);
+  } else {
+    console.log('User not found');
+  }
 };
 
 const deleteUser = async (id: Schema.Types.ObjectId) => {
