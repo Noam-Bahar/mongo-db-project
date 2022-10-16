@@ -42,13 +42,23 @@ const updateUser = (id, userInfo) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.updateUser = updateUser;
 const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    // TODO
-    yield User_1.default.deleteOne({ _id: id });
-    console.log('deleteUser method activated', id);
+    try {
+        yield User_1.default.deleteOne({ _id: id });
+        console.log('User has been deleted');
+    }
+    catch (e) {
+        console.log('User not found');
+    }
 });
 exports.deleteUser = deleteUser;
 const getUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    // TODO: User.find(id)
+    try {
+        const user = yield User_1.default.find(id);
+        return user;
+    }
+    catch (e) {
+        console.log('User not found');
+    }
 });
 exports.getUser = getUser;
 const addGroup = (group) => __awaiter(void 0, void 0, void 0, function* () {

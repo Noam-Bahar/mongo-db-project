@@ -30,14 +30,21 @@ const updateUser = async (id: Schema.Types.ObjectId, userInfo: IUser) => {
 };
 
 const deleteUser = async (id: Schema.Types.ObjectId) => {
-  // TODO
-  await User.deleteOne({ _id: id });
-
-  console.log('deleteUser method activated', id);
+  try {
+    await User.deleteOne({ _id: id });
+    console.log('User has been deleted');
+  } catch (e) {
+    console.log('User not found');
+  }
 };
 
 const getUser = async (id: Schema.Types.ObjectId) => {
-  // TODO: User.find(id)
+  try {
+    const user = await User.find(id);
+    return user;
+  } catch (e) {
+    console.log('User not found');
+  }
 };
 
 const addGroup = async (group: IGroup) => {
