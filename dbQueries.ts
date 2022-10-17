@@ -3,7 +3,7 @@ import Group from './models/Group';
 import { Schema } from 'mongoose';
 import { IUser, IGroup } from './definitions';
 
-const addUser = async (user: IUser) => {
+export const addUser = async (user: IUser) => {
   try {
     const { name } = user;
     await User.create(user);
@@ -13,7 +13,10 @@ const addUser = async (user: IUser) => {
   }
 };
 
-const updateUser = async (id: Schema.Types.ObjectId, userInfo: IUser) => {
+export const updateUser = async (
+  id: Schema.Types.ObjectId,
+  userInfo: IUser
+) => {
   const user = await User.findById(id);
   if (user) {
     const { name, age, groups } = userInfo;
@@ -29,7 +32,7 @@ const updateUser = async (id: Schema.Types.ObjectId, userInfo: IUser) => {
   }
 };
 
-const deleteUser = async (id: Schema.Types.ObjectId) => {
+export const deleteUser = async (id: Schema.Types.ObjectId) => {
   try {
     await User.findByIdAndDelete(id);
     console.log('User has been deleted');
@@ -38,7 +41,7 @@ const deleteUser = async (id: Schema.Types.ObjectId) => {
   }
 };
 
-const getUser = async (id: Schema.Types.ObjectId) => {
+export const getUser = async (id: Schema.Types.ObjectId) => {
   try {
     const user = await User.findById(id);
     return user;
@@ -47,7 +50,7 @@ const getUser = async (id: Schema.Types.ObjectId) => {
   }
 };
 
-const addGroup = async (group: IGroup) => {
+export const addGroup = async (group: IGroup) => {
   try {
     await Group.create(group);
     console.log(`New group ${group.name} created`);
@@ -56,7 +59,10 @@ const addGroup = async (group: IGroup) => {
   }
 };
 
-const updateGroup = async (id: Schema.Types.ObjectId, groupInfo: IGroup) => {
+export const updateGroup = async (
+  id: Schema.Types.ObjectId,
+  groupInfo: IGroup
+) => {
   const group = await Group.findById(id);
   if (group) {
     const { name, childGroups, members } = groupInfo;
@@ -72,7 +78,7 @@ const updateGroup = async (id: Schema.Types.ObjectId, groupInfo: IGroup) => {
   }
 };
 
-const deleteGroup = async (id: Schema.Types.ObjectId) => {
+export const deleteGroup = async (id: Schema.Types.ObjectId) => {
   try {
     await Group.findByIdAndDelete(id);
     console.log(`Group has been deleted`);
@@ -81,7 +87,7 @@ const deleteGroup = async (id: Schema.Types.ObjectId) => {
   }
 };
 
-const getGroup = async (id: Schema.Types.ObjectId) => {
+export const getGroup = async (id: Schema.Types.ObjectId) => {
   try {
     const group = await Group.findById(id);
     return group;
@@ -90,13 +96,12 @@ const getGroup = async (id: Schema.Types.ObjectId) => {
   }
 };
 
-export {
-  addUser,
-  updateUser,
-  deleteUser,
-  getUser,
-  addGroup,
-  updateGroup,
-  deleteGroup,
-  getGroup,
-};
+export const addChildToGroup = async (
+  parent_id: Schema.Types.ObjectId,
+  child_id: Schema.Types.ObjectId
+) => {};
+
+export const createChildGroup = async (
+  parent_id: Schema.Types.ObjectId,
+  group: IGroup
+) => {};
