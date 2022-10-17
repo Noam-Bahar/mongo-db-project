@@ -56,11 +56,39 @@ const addGroup = async (group: IGroup) => {
   }
 };
 
-const updateGroup = async (id: Schema.Types.ObjectId, groupInfo: IGroup) => {};
+const updateGroup = async (id: Schema.Types.ObjectId, groupInfo: IGroup) => {
+  const group = await Group.findById(id);
+  if (group) {
+    const { name, childGroups, members } = groupInfo;
 
-const deleteGroup = async (id: Schema.Types.ObjectId) => {};
+    group.name = name || group.name;
+    group.childGroups = childGroups || group.childGroups;
+    group.members = members || group.members;
 
-const getGroup = async (id: Schema.Types.ObjectId) => {};
+    await group.save();
+    console.log(`Group has been updated`);
+  } else {
+    console.log(`Group not found`);
+  }
+};
+
+const deleteGroup = async (id: Schema.Types.ObjectId) => {
+  try {
+    await Group.findByIdAndDelete(id);
+    console.log(`Group has been deleted`);
+  } catch (e) {
+    console.log(`Group not found`);
+  }
+};
+
+const getGroup = async (id: Schema.Types.ObjectId) => {
+  try {
+    const group = await Group.findById(id);
+    return group;
+  } catch (e) {
+    console.log(`Group not found`);
+  }
+};
 
 export {
   addUser,
